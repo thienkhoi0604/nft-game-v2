@@ -19,6 +19,20 @@ const styles = {
 
   // custom button component
   btn: "px-4 py-2 rounded-lg bg-siteViolet w-fit text-white font-rajdhani font-bold",
+
+  // common
+  flexCenter: "flex items-center justify-center",
+  flexEnd: "flex justify-end items-end",
+  flexBetween: "flex justify-between items-center",
+
+  // alert
+  info: "text-blue-700 bg-blue-100 dark:bg-blue-200 dark:text-blue-800",
+  success: "text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800",
+  failure:
+    "text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800",
+  alertContainer: "absolute z-10 top-5 left-0 right-0",
+  alertWrapper: "p-4 rounded-lg font-rajdhani font-semibold text-lg ",
+  alertIcon: "flex-shrink-0 inline w-6 h-6 mr-2",
 };
 
 export default styles;

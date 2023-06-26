@@ -11,45 +11,68 @@ export const GlobalContextProvider = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
+  const [showAlert, setShowAlert] = useState({
+    status: false,
+    type: "info",
+    message: "",
+  });
 
-  //   //* Set the wallet address to the state
-  //   const updateCurrentWalletAddress = async () => {
-  //     const accounts = await window?.ethereum?.request({
-  //       method: "eth_requestAccounts",
-  //     });
+  //* Set the wallet address to the state
+  const updateCurrentWalletAddress = () => {
+    const accounts = window?.ethereum?.request({
+      method: "eth_requestAccounts",
+    });
 
-  //     console.log("account_address", accounts);
+    console.log("account_address", accounts);
 
-  //     if (accounts) setWalletAddress(accounts[0]);
-  //   };
+    if (accounts) setWalletAddress(accounts[0]);
+  };
 
-  //   useEffect(() => {
-  //     updateCurrentWalletAddress();
+  useEffect(() => {
+    updateCurrentWalletAddress();
 
-  //     window?.ethereum?.on("accountsChanged", updateCurrentWalletAddress);
-  //   }, []);
+    window?.ethereum?.on("accountsChanged", updateCurrentWalletAddress);
+  }, []);
 
-  //   //* Set the smart contract and provider to the state
-  //   useEffect(() => {
-  //     const setSmartContractAndProvider = async () => {
-  //       const web3Modal = new Web3Modal();
-  //       const connection = await web3Modal.connect();
-  //       const newProvider = new ethers.providers.Web3Provider(connection);
-  //       const signer = newProvider.getSigner();
-  //       const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+  //* Set the smart contract and provider to the state
+  useEffect(() => {
+    const setSmartContractAndProvider = async () => {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const newProvider = new ethers.providers.Web3Provider(connection);
+      const signer = newProvider.getSigner();
+      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
-  //       setProvider(newProvider);
-  //       setContract(newContract);
-  //     };
+      setProvider(newProvider);
+      setContract(newContract);
+      console.log("web3Modal", web3Modal);
+      console.log("connection", connection);
+      console.log("newProvider", newProvider);
+      console.log("signer", signer);
+      console.log("newContract", newContract);
+    };
 
-  //     setSmartContractAndProvider();
-  //   }, []);
+    setSmartContractAndProvider();
+  }, []);
+
+  //* Handle alerts
+  useEffect(() => {
+    if (showAlert?.status) {
+      const timer = setTimeout(() => {
+        setShowAlert({ status: false, type: "info", message: "" });
+      }, [5000]);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert]);
 
   return (
     <GlobalContext.Provider
       value={{
         contract,
         walletAddress,
+        showAlert,
+        setShowAlert,
       }}
     >
       {children}
