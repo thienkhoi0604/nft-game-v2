@@ -11,10 +11,10 @@ const Home = () => {
 
   const handleClick = async () => {
     try {
-      const playerExists = await contract.isPlayer(walletAddress);
+      const playerExists = await contract?.isPlayer(walletAddress);
 
       if (!playerExists) {
-        await contract.registerPlayer(playerName, playerName);
+        await contract?.registerPlayer(playerName, playerName);
 
         setShowAlert({
           status: true,

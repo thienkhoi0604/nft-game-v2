@@ -18,8 +18,8 @@ export const GlobalContextProvider = ({ children }) => {
   });
 
   //* Set the wallet address to the state
-  const updateCurrentWalletAddress = () => {
-    const accounts = window?.ethereum?.request({
+  const updateCurrentWalletAddress = async () => {
+    const accounts = await window?.ethereum?.request({
       method: "eth_requestAccounts",
     });
 
