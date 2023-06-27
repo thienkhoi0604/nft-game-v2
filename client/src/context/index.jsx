@@ -1,57 +1,73 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { useNavigate } from "react-router-dom";
 
 import { ABI, ADDRESS } from "../contract";
+import { createEventListeners } from "./createEventListeners";
 
 const GlobalContext = createContext();
 
+const providerOptions = {};
+
 export const GlobalContextProvider = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState("");
-  const [provider, setProvider] = useState(null);
-  const [contract, setContract] = useState(null);
+  const [provider, setProvider] = useState("");
+  const [contract, setContract] = useState("");
   const [showAlert, setShowAlert] = useState({
     status: false,
     type: "info",
     message: "",
   });
+  const [battleName, setBattleName] = useState("");
 
-  //* Set the wallet address to the state
-  const updateCurrentWalletAddress = async () => {
-    const accounts = await window?.ethereum?.request({
-      method: "eth_requestAccounts",
-    });
-
-    console.log("account_address", accounts);
-
-    if (accounts) setWalletAddress(accounts[0]);
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
+    //* Set the wallet address to the state
+    const updateCurrentWalletAddress = async () => {
+      const accounts = await window?.ethereum?.request({
+        method: "eth_requestAccounts",
+      });
+
+      console.log("account_address", accounts);
+
+      if (accounts) setWalletAddress(accounts[0]);
+    };
+
     updateCurrentWalletAddress();
 
     window?.ethereum?.on("accountsChanged", updateCurrentWalletAddress);
   }, []);
 
   //* Set the smart contract and provider to the state
-  useEffect(() => {
-    const setSmartContractAndProvider = async () => {
-      const web3Modal = new Web3Modal();
-      const connection = await web3Modal.connect();
-      const newProvider = new ethers.providers.Web3Provider(connection);
-      const signer = newProvider.getSigner();
-      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+  const setSmartContractAndProvider = async () => {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const newProvider = new ethers.providers.Web3Provider(connection);
+    const signer = newProvider.getSigner();
+    const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
-      setProvider(newProvider);
-      setContract(newContract);
-      console.log("web3Modal", web3Modal);
-      console.log("connection", connection);
-      console.log("newProvider", newProvider);
-      console.log("signer", signer);
-      console.log("newContract", newContract);
-    };
+    console.log("web3Modal", web3Modal);
+    console.log("connection", connection);
+    console.log("newProvider", newProvider);
+    console.log("signer", signer);
+    console.log("newContract", newContract);
 
+    console.log(newContract.connect);
+
+    setContract(newContract);
+    setProvider(newProvider);
+  };
+  useLayoutEffect(() => {
+    console.log("run use effect");
     setSmartContractAndProvider();
   }, []);
 
@@ -66,6 +82,19 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [showAlert]);
 
+  //* Activate event listeners for the smart contract
+  useEffect(() => {
+    if (contract) {
+      createEventListeners({
+        navigate,
+        contract,
+        provider,
+        walletAddress,
+        setShowAlert,
+      });
+    }
+  }, [contract, navigate, provider, walletAddress]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -73,6 +102,8 @@ export const GlobalContextProvider = ({ children }) => {
         walletAddress,
         showAlert,
         setShowAlert,
+        battleName,
+        setBattleName,
       }}
     >
       {children}

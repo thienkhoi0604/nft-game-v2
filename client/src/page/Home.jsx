@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { PageHOC, CustomInput, CustomButton } from "../components";
@@ -12,7 +12,7 @@ const Home = () => {
   const handleClick = async () => {
     try {
       const playerExists = await contract?.isPlayer(walletAddress);
-
+      console.log("contract - home ", contract);
       if (!playerExists) {
         await contract?.registerPlayer(playerName, playerName);
 
@@ -22,12 +22,25 @@ const Home = () => {
           message: `${playerName} is being summoned!`,
         });
 
-        setTimeout(() => navigate("/create-battle"), 8000);
+        //setTimeout(() => navigate("/create-battle"), 8000);
       }
     } catch (error) {
       alert(error);
     }
   };
+
+  useEffect(() => {
+    const checkForPlayerToken = async () => {
+      const playerExists = await contract.isPlayer(walletAddress);
+      const playerTokenExists = await contract.isPlayerToken(walletAddress);
+
+      if (playerExists && playerTokenExists) navigate("/create-battle");
+
+      console.log("checkForPlayerToken", playerExists, playerTokenExists);
+    };
+
+    if (contract) checkForPlayerToken();
+  }, [contract, navigate, walletAddress]);
 
   return (
     <div>
