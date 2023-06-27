@@ -129,6 +129,17 @@ export const GlobalContextProvider = ({ children }) => {
     fetchGameData();
   }, [contract, walletAddress, updateGameData]);
 
+  //* Set battleground to local storage
+  useEffect(() => {
+    const isBattleground = localStorage.getItem("battleground");
+
+    if (isBattleground) {
+      setBattleGround(isBattleground);
+    } else {
+      localStorage.setItem("battleground", battleGround);
+    }
+  }, [battleGround]);
+
   return (
     <GlobalContext.Provider
       value={{
