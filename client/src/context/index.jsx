@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
   useContext,
@@ -15,8 +16,6 @@ import { createEventListeners } from "./createEventListeners";
 
 const GlobalContext = createContext();
 
-const providerOptions = {};
-
 export const GlobalContextProvider = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState("");
   const [provider, setProvider] = useState("");
@@ -33,6 +32,7 @@ export const GlobalContextProvider = ({ children }) => {
     activeBattle: null,
   });
   const [updateGameData, setUpdateGameData] = useState(0);
+  const [battleGround, setBattleGround] = useState("bg-astral");
 
   const navigate = useNavigate();
 
@@ -139,6 +139,8 @@ export const GlobalContextProvider = ({ children }) => {
         battleName,
         setBattleName,
         gameData,
+        battleGround,
+        setBattleGround,
       }}
     >
       {children}

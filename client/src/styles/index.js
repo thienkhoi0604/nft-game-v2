@@ -49,6 +49,13 @@ const styles = {
     "md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg",
   gameLoadPlayerText: "mt-3 font-rajdhani text-white md:text-xl text-base",
   gameLoadVS: "font-rajdhani font-extrabold text-siteViolet text-7xl mx-16",
+
+  // Game page
+  gameContainer:
+    "w-screen min-h-screen bg-cover bg-no-repeat bg-center flex-col",
+  gameMoveBox:
+    "sm:w-20 w-14 sm:h-20 h-14 rounded-full cursor-pointer border-[2px]",
+  gameMoveIcon: "w-1/2 h-1/w-1/2 object-contain",
 };
 
 export default styles;
