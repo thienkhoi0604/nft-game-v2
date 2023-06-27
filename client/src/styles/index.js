@@ -25,6 +25,9 @@ const styles = {
   flexEnd: "flex justify-end items-end",
   flexBetween: "flex justify-between items-center",
 
+  // modal
+  modalText: "font-rajdhani font-bold text-3xl text-white mb-6 text-center",
+
   // alert
   info: "text-blue-700 bg-blue-100 dark:bg-blue-200 dark:text-blue-800",
   success: "text-green-700 bg-green-100 dark:bg-green-200 dark:text-green-800",
@@ -56,6 +59,16 @@ const styles = {
   gameMoveBox:
     "sm:w-20 w-14 sm:h-20 h-14 rounded-full cursor-pointer border-[2px]",
   gameMoveIcon: "w-1/2 h-1/w-1/2 object-contain",
+
+  // card component
+  cardContainer:
+    "relative sm:w-[260px] w-[220px] sm:h-[335px] h-[280px] z-0 transition-all",
+  cardImg: "w-full h-full object-contain",
+  cardPointContainer:
+    "absolute sm:w-[40px] w-[32px] sm:h-[40px] h-[32px] rounded-[25px] bottom-[31.4%]",
+  cardPoint: "font-rajdhani text-[20px] font-bold",
+  cardTextContainer: "absolute w-full bottom-[13.5%] left-3",
+  cardText: "font-rajdhani text-[26px] font-bold text-white",
 };
 
 export default styles;
