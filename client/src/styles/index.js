@@ -33,6 +33,12 @@ const styles = {
   alertContainer: "absolute z-10 top-5 left-0 right-0",
   alertWrapper: "p-4 rounded-lg font-rajdhani font-semibold text-lg ",
   alertIcon: "flex-shrink-0 inline w-6 h-6 mr-2",
+
+  // join battle page
+  joinHeadText: "font-rajdhani font-semibold text-2xl text-white mb-3",
+  joinContainer: "flex flex-col gap-3 mt-3 mb-5",
+  joinBattleTitle: "font-rajdhani font-normal text-xl text-white",
+  joinLoading: "font-rajdhani font-normal text-xl text-white",
 };
 
 export default styles;
