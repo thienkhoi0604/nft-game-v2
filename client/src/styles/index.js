@@ -39,6 +39,16 @@ const styles = {
   joinContainer: "flex flex-col gap-3 mt-3 mb-5",
   joinBattleTitle: "font-rajdhani font-normal text-xl text-white",
   joinLoading: "font-rajdhani font-normal text-xl text-white",
+
+  // gameload component
+  gameLoadContainer: "absolute inset-0 z-10 w-full h-screen gameload flex-col",
+  gameLoadBtnBox: "w-full flex justify-end px-8",
+  gameLoadText: "font-rajdhani text-siteWhite text-2xl mt-5 text-center",
+  gameLoadPlayersBox: "flex justify-evenly items-center mt-20",
+  gameLoadPlayerImg:
+    "md:w-36 w-24 md:h-36 h-24 object-contain rounded-full drop-shadow-lg",
+  gameLoadPlayerText: "mt-3 font-rajdhani text-white md:text-xl text-base",
+  gameLoadVS: "font-rajdhani font-extrabold text-siteViolet text-7xl mx-16",
 };
 
 export default styles;
