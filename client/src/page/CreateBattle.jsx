@@ -17,7 +17,7 @@ const CreateBattle = () => {
     } else if (gameData?.activeBattle?.battleStatus === 0) {
       setWaitBattle(true);
     }
-  }, [gameData]);
+  }, [gameData, navigate]);
 
   const handleClick = async () => {
     if (battleName === "" || battleName.trim() === "") return null;
