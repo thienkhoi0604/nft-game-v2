@@ -22,6 +22,7 @@ const Battle = () => {
     showAlert,
     setShowAlert,
     battleGround,
+    setErrorMessage,
   } = useGlobalContext();
   const [player2, setPlayer2] = useState({});
   const [player1, setPlayer1] = useState({});
@@ -40,7 +41,7 @@ const Battle = () => {
         message: `Initiating ${choice === 1 ? "attack" : "defense"}`,
       });
     } catch (error) {
-      console.log(error);
+      setErrorMessage(error);
     }
   };
 
@@ -81,12 +82,12 @@ const Battle = () => {
         });
         setPlayer2({ ...player02, att: "X", def: "X", health: p2H, mana: p2M });
       } catch (error) {
-        console.log(error.message);
+        setErrorMessage(error.message);
       }
     };
 
     if (contract && gameData.activeBattle) getPlayerInfo();
-  }, [contract, gameData, battleName, walletAddress]);
+  }, [contract, gameData, battleName, walletAddress, setErrorMessage]);
 
   return (
     <div
