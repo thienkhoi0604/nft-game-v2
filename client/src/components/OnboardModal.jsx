@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import styles from "../styles";
 import { CustomButton } from ".";
 import { useGlobalContext } from "../context";
-import { GetParams, SwitchNetwork } from "../utils/onboard.js";
+import { GetParams, SwitchNetwork } from "../utils/OnboardModal.js";
 
 const OnboardModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -77,7 +77,7 @@ const OnboardModal = () => {
             <CustomButton
               title="Grab some test tokens"
               handleClick={() =>
-                window.open("https://faucet.avax.network/", "_blank")
+                window.open("https://goerli-faucet.pk910.de/#/", "_blank")
               }
             />
           </>

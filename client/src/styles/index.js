@@ -89,6 +89,9 @@ const styles = {
     "sm:w-[420px] w-full h-[260px] p-2 glass-morphism m-4 rounded-lg cursor-pointer battle-card",
   battleGroundCardImg: "w-full h-full object-cover rounded-md",
   battleGroundCardText: "font-rajdhani font-semibold text-2xl text-white",
+
+  // glassmorphism
+  glassEffect: "bg-white backdrop-filter backdrop-blur-lg bg-opacity-10",
 };
 
 export default styles;
