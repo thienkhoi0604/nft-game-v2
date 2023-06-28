@@ -23,6 +23,8 @@ const Battle = () => {
     setShowAlert,
     battleGround,
     setErrorMessage,
+    player1Ref,
+    player2Ref,
   } = useGlobalContext();
   const [player2, setPlayer2] = useState({});
   const [player1, setPlayer1] = useState({});
@@ -44,6 +46,14 @@ const Battle = () => {
       setErrorMessage(error);
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!gameData?.activeBattle) navigate("/");
+    }, [2000]);
+
+    return () => clearTimeout(timer);
+  }, [gameData?.activeBattle, navigate]);
 
   useEffect(() => {
     const getPlayerInfo = async () => {
@@ -100,7 +110,12 @@ const Battle = () => {
       <PlayerInfo player={player2} playerIcon={player02Icon} mt />
 
       <div className={`${styles.flexCenter} flex-col my-10`}>
-        <Card card={player2} title={player2?.playerName} playerTwo />
+        <Card
+          card={player2}
+          title={player2?.playerName}
+          cardRef={player2Ref}
+          playerTwo
+        />
 
         <div className="flex items-center flex-row">
           <ActionButton
@@ -109,7 +124,12 @@ const Battle = () => {
             restStyles="mr-2 hover:border-yellow-400"
           />
 
-          <Card card={player1} title={player1?.playerName} restStyles="mt-3" />
+          <Card
+            card={player1}
+            title={player1?.playerName}
+            cardRef={player1Ref}
+            restStyles="mt-3"
+          />
 
           <ActionButton
             imgUrl={defense}

@@ -1,12 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useLayoutEffect,
-} from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import { useNavigate } from "react-router-dom";
@@ -38,6 +31,9 @@ export const GlobalContextProvider = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
+
+  const player1Ref = useRef();
+  const player2Ref = useRef();
 
   useEffect(() => {
     //* Set the wallet address to the state
@@ -100,6 +96,8 @@ export const GlobalContextProvider = ({ children }) => {
         walletAddress,
         setShowAlert,
         setUpdateGameData,
+        player1Ref,
+        player2Ref,
       });
     }
   }, [contract, navigate, provider, walletAddress, step]);
@@ -189,6 +187,8 @@ export const GlobalContextProvider = ({ children }) => {
         setBattleGround,
         errorMessage,
         setErrorMessage,
+        player1Ref,
+        player2Ref,
       }}
     >
       {children}
