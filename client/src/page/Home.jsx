@@ -22,7 +22,7 @@ const Home = () => {
           message: `${playerName} is being summoned!`,
         });
 
-        //setTimeout(() => navigate("/create-battle"), 8000);
+        setTimeout(() => navigate("/create-battle"), 8000);
       }
     } catch (error) {
       alert(error);

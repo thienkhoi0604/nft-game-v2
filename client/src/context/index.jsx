@@ -54,23 +54,24 @@ export const GlobalContextProvider = ({ children }) => {
   }, []);
 
   //* Set the smart contract and provider to the state
-  const setSmartContractAndProvider = async () => {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const newProvider = new ethers.providers.Web3Provider(connection);
-    const signer = newProvider.getSigner();
-    const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+  useEffect(() => {
+    const setSmartContractAndProvider = async () => {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const newProvider = new ethers.providers.Web3Provider(connection);
+      const signer = newProvider.getSigner();
+      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
-    console.log("web3Modal", web3Modal);
-    console.log("connection", connection);
-    console.log("newProvider", newProvider);
-    console.log("signer", signer);
-    console.log("newContract", newContract);
+      console.log("web3Modal", web3Modal);
+      console.log("connection", connection);
+      console.log("newProvider", newProvider);
+      console.log("signer", signer);
+      console.log("newContract", newContract);
 
-    setContract(newContract);
-    setProvider(newProvider);
-  };
-  useLayoutEffect(() => {
+      setContract(newContract);
+      setProvider(newProvider);
+    };
+
     console.log("run use effect");
     setSmartContractAndProvider();
   }, []);

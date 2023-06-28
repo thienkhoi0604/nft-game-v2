@@ -29,6 +29,12 @@ export default {
       chainId: 43113,
       accounts: [process.env.PRIVATE_KEY],
     },
+    goerli: {
+      url: "https://eth-goerli.g.alchemy.com/v2/Z-2GPpokAc1xw2xwJkczTrRvR2WPsSdk",
+      accounts: [
+        "0301d240955aed0bc5052011e2431a3617e6c9a99a2c1e4422b92c7fd87d0b9a",
+      ], // TODO: fill the private key
+    },
     // subnet: {
     //   url: process.env.NODE_URL,
     //   chainId: Number(process.env.CHAIN_ID),
