@@ -35,18 +35,17 @@ export const GlobalContextProvider = ({ children }) => {
   const player1Ref = useRef();
   const player2Ref = useRef();
 
+  //* Set the wallet address to the state
+  const updateCurrentWalletAddress = async () => {
+    const accounts = await window?.ethereum?.request({
+      method: "eth_requestAccounts",
+    });
+
+    console.log("account_address", accounts);
+
+    if (accounts) setWalletAddress(accounts[0]);
+  };
   useEffect(() => {
-    //* Set the wallet address to the state
-    const updateCurrentWalletAddress = async () => {
-      const accounts = await window?.ethereum?.request({
-        method: "eth_requestAccounts",
-      });
-
-      console.log("account_address", accounts);
-
-      if (accounts) setWalletAddress(accounts[0]);
-    };
-
     updateCurrentWalletAddress();
 
     window?.ethereum?.on("accountsChanged", updateCurrentWalletAddress);
@@ -98,6 +97,7 @@ export const GlobalContextProvider = ({ children }) => {
         setUpdateGameData,
         player1Ref,
         player2Ref,
+        updateCurrentWalletAddress,
       });
     }
   }, [contract, navigate, provider, walletAddress, step]);
