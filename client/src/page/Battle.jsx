@@ -26,9 +26,10 @@ const Battle = () => {
     player1Ref,
     player2Ref,
   } = useGlobalContext();
-  const [player2, setPlayer2] = useState({});
   const [player1, setPlayer1] = useState({});
+  const [player2, setPlayer2] = useState({});
   const { battleName } = useParams();
+
   const navigate = useNavigate();
 
   const makeAMove = async (choice) => {

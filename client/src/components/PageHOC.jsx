@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/display-name */
 import { useNavigate } from "react-router-dom";
 
 import Alert from "./Alert";
@@ -31,7 +33,7 @@ const PageHOC = (Component, title, description) => () => {
           <Component />
         </div>
 
-        <p className={styles.footerText}>Made with 💜 by JavaScript Mastery</p>
+        <p className={styles.footerText}>Made by Team 10</p>
       </div>
 
       <div className="flex flex-1">

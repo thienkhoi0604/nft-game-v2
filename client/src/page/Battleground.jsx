@@ -7,6 +7,7 @@ import { useGlobalContext } from "../context";
 
 const Battleground = () => {
   const { setBattleGround, setShowAlert, showAlert } = useGlobalContext();
+
   const navigate = useNavigate();
 
   const handleBattleChoice = (ground) => {

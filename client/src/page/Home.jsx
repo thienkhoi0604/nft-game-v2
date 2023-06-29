@@ -8,12 +8,14 @@ const Home = () => {
   const { contract, walletAddress, setShowAlert, gameData, setErrorMessage } =
     useGlobalContext();
   const [playerName, setPlayerName] = useState("");
+
   const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
       const playerExists = await contract?.isPlayer(walletAddress);
       console.log("contract - home ", contract);
+
       if (!playerExists) {
         await contract?.registerPlayer(playerName, playerName, {
           gasLimit: 200000,
@@ -52,20 +54,22 @@ const Home = () => {
   }, [gameData, navigate]);
 
   return (
-    <div>
-      <CustomInput
-        label="Name"
-        placeHolder="Enter your player name"
-        value={playerName}
-        handleValueChange={setPlayerName}
-      />
+    walletAddress && (
+      <div>
+        <CustomInput
+          label="Name"
+          placeHolder="Enter your player name"
+          value={playerName}
+          handleValueChange={setPlayerName}
+        />
 
-      <CustomButton
-        title="Register"
-        handleClick={handleClick}
-        restStyles="mt-6"
-      />
-    </div>
+        <CustomButton
+          title="Register"
+          handleClick={handleClick}
+          restStyles="mt-6"
+        />
+      </div>
+    )
   );
 };
 

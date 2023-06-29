@@ -37,6 +37,16 @@ const styles = {
   alertWrapper: "p-4 rounded-lg font-rajdhani font-semibold text-lg ",
   alertIcon: "flex-shrink-0 inline w-6 h-6 mr-2",
 
+  // player info component
+  playerImg: "w-14 h-14 object-contain rounded-full",
+  playerHealth:
+    "flex flex-row bg-white rounded-md p-2 sm:min-w-[512px] min-w-[312px] sm:min-h-[48px] min-h-[40px] bg-opacity-10 backdrop-filter backdrop-blur-lg mx-3",
+  playerHealthBar: "sm:w-4 w-2 sm:h-8 h-6 rounded-sm",
+  playerMana:
+    "w-14 h-14 rounded-full text-white font-rajdhani font-extrabold text-2xl cursor-pointer",
+  playerInfo: "font-rajdhani font-medium",
+  playerInfoSpan: "font-extrabold text-white",
+
   // join battle page
   joinHeadText: "font-rajdhani font-semibold text-2xl text-white mb-3",
   joinContainer: "flex flex-col gap-3 mt-3 mb-5",

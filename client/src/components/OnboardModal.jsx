@@ -36,11 +36,11 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              You don't have Core Wallet installed!
+              You don't have Metamask Wallet installed!
             </p>
             <CustomButton
-              title="Download Core"
-              handleClick={() => window.open("https://core.app/", "_blank")}
+              title="Download Metamask"
+              handleClick={() => window.open("https://metamask.io/", "_blank")}
             />
           </>
         );
@@ -49,7 +49,7 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              You haven't connected your account to Core Wallet!
+              You haven't connected your account to Metamask Wallet!
             </p>
             <CustomButton
               title="Connect Account"
@@ -62,7 +62,7 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              You're on a different network. Switch to Fuji C-Chain.
+              You're on a different network. Switch to Goerli Testnet.
             </p>
             <CustomButton title="Switch" handleClick={SwitchNetwork} />
           </>
@@ -72,7 +72,7 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              Oops, you don't have AVAX tokens in your account
+              Oops, you don't have GoerliETH tokens in your account
             </p>
             <CustomButton
               title="Grab some test tokens"
