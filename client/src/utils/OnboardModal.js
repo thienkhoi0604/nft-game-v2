@@ -88,7 +88,7 @@ export const GetParams = async () => {
   }
   response.balance = currentBalance;
 
-  if (currentBalance < 0.2) {
+  if (currentBalance < 0.00001) {
     response.step = 3;
     return response;
   }
